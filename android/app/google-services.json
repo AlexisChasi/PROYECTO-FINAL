@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723317665034",
+    "project_id": "poligono-9704a",
+    "storage_bucket": "poligono-9704a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723317665034:android:dd0ac6136a6228609c1ef3",
+        "android_client_info": {
+          "package_name": "com.example.gtk_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbeddtRdPNY6Q-70J0tHy21USdHDNDS1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
