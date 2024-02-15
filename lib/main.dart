@@ -5,6 +5,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart'; // new
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart'; // new
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gtk_flutter/google_maps_screen.dart';
 import 'package:provider/provider.dart'; // new
 
 import 'app_state.dart'; // new
@@ -90,6 +91,12 @@ final _router = GoRouter(
                 }),
               ],
             );
+          },
+        ),
+        GoRoute(
+          path: 'google-maps',
+          builder: (context, state) {
+            return GoogleMapsScreen(); // Elimina el uso de const
           },
         ),
       ],

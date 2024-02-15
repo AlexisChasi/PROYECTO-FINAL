@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart' // new
-    hide
-        EmailAuthProvider,
-        PhoneAuthProvider; // new
-import 'package:flutter/material.dart'; // new
-import 'package:provider/provider.dart'; // new
+import 'package:firebase_auth/firebase_auth.dart'
+    hide EmailAuthProvider, PhoneAuthProvider;
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'app_state.dart'; // new
-import 'src/authentication.dart'; // new
+import 'app_state.dart';
+import 'src/authentication.dart';
 import 'src/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,10 +19,21 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          Image.asset('assets/imagen1.jpg'),
+          // Ajuste de la imagen aquí
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            child: Container(
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/imagen1.jpg',
+                width: MediaQuery.of(context).size.width *
+                    0.3, // Establecer el ancho deseado
+                fit: BoxFit.contain, // Ajustar la imagen al contenedor
+              ),
+            ),
+          ),
           const SizedBox(height: 8),
           const IconAndDetail(Icons.location_city, 'Quito - Ecuador'),
-          // Add from here
           Consumer<ApplicationState>(
             builder: (context, appState, _) => AuthFunc(
                 loggedIn: appState.loggedIn,
@@ -32,7 +41,6 @@ class HomePage extends StatelessWidget {
                   FirebaseAuth.instance.signOut();
                 }),
           ),
-          // to here
           const Divider(
             height: 8,
             thickness: 1,

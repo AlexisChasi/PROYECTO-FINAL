@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/google_maps_screen.dart';
 
 import 'widgets.dart';
 
@@ -39,9 +40,26 @@ class AuthFunc extends StatelessWidget {
                 onPressed: () {
                   context.push('/profile');
                 },
-                child: const Text('Profile')),
+                child: const Text('Perfil')),
           ),
-        )
+        ),
+        Visibility(
+          visible: loggedIn,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: StyledButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GoogleMapsScreen(
+                          key: UniqueKey()), // Asegúrate de pasar una Key
+                    ),
+                  );
+                },
+                child: const Text('Mapeo')),
+          ),
+        ),
       ],
     );
   }
