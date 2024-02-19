@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:gtk_flutter/service/firebase_service.dart';
 import 'package:gtk_flutter/utils/constans.dart';
 import 'package:gtk_flutter/utils/utils.dart';
 import 'package:intl/intl.dart';
@@ -132,6 +133,63 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 Navigator.of(context).pop();
               },
               child: const Text('Cerrar'),
+            ),
+            TextButton(
+              onPressed: saveMeasuresCt,
+              child: const Text("Guardar datos"),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  void saveMeasuresCt() {
+    double area = calculatePolygonArea(posiciones);
+    String name =
+        ''; // Variable para almacenar el nombre ingresado por el usuario
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Datos"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('Datos: \nArea: $area\nPosciones: $posiciones'),
+              TextField(
+                decoration: InputDecoration(labelText: 'Nombre'),
+                onChanged: (value) {
+                  // Actualizar el nombre cuando el usuario escribe en el campo de texto
+                  name = value;
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                // Verificar si se ingresó un nombre
+                if (name.isNotEmpty) {
+                  await saveMeasures(area, posiciones, name);
+                  Navigator.of(context).pop();
+                } else {
+                  // Mostrar un mensaje de error si no se ingresó un nombre
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Por favor, ingresa un nombre.'),
+                    ),
+                  );
+                }
+              },
+              child: const Text('Guardar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
             ),
           ],
         );
