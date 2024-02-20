@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/admin_user_create.dart';
 import 'package:gtk_flutter/google_maps_screen.dart';
 import 'package:gtk_flutter/list_measures.dart';
 
@@ -21,6 +22,8 @@ class AuthFunc extends StatelessWidget {
 
   @override
 Widget build(BuildContext context) {
+  
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
@@ -79,6 +82,23 @@ Widget build(BuildContext context) {
               );
             },
             child: const Text('Tomas'),
+          ),
+        ),
+      ),
+      Visibility(
+        visible: loggedIn,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 24, bottom: 8),
+          child: StyledButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AdminManageUsersScreen(), // Asegúrate de pasar una Key
+                ),
+              );
+            },
+            child: const Text('Gestion Usuarios'),
           ),
         ),
       ),

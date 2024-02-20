@@ -7,6 +7,36 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 
 // ----- Admin -------
 
+Future<void> newUserTopo(String email, String password, String name) async {
+  UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+
+  // Agregar información adicional del usuario a Firestore
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(userCredential.user!.uid)
+      .set({
+    'nombre': name,
+    'email': email,
+    'role': 'Topografo', // Definir el rol predeterminado del nuevo usuario
+    'estado': true
+    // Puedes agregar más campos según sea necesario
+  });
+}
+
+Future<void> deleteUserTopo(String userID) async {
+  await db.collection('users').doc(userID).delete();
+}
+
+Future<void> statusUser(bool status, String userID) async {
+  await db.collection('users').doc(userID).update({
+    "estado": status
+  });
+}
+
 // ----- Cartografos ------
 Future<void> saveMeasures(double area, List<LatLng> points, String name) async {
   // Obtener el usuario actualmente autenticado
