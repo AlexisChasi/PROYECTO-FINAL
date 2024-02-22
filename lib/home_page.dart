@@ -13,49 +13,50 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ApplicationState(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Mapeo de Terrenos'),
-          centerTitle: true,
-        ),
-        body: ListView(
-          children: <Widget>[
-          // Ajuste de la imagen aquí
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
-            child: Container(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'assets/imagen1.jpg',
-                width: MediaQuery.of(context).size.width *
-                    0.3, // Establecer el ancho deseado
-                fit: BoxFit.contain, // Ajustar la imagen al contenedor
+        create: (context) => ApplicationState(),
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Mapeo de Terrenos'),
+            centerTitle: true,
+          ),
+          body: ListView(
+            children: <Widget>[
+              // Ajuste de la imagen aquí
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/imagen1.jpg',
+                    width: MediaQuery.of(context).size.width *
+                        0.3, // Establecer el ancho deseado
+                    fit: BoxFit.contain, // Ajustar la imagen al contenedor
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 8),
+              const IconAndDetail(Icons.location_city, 'Quito - Ecuador'),
+              Consumer<ApplicationState>(
+                builder: (context, appState, _) => AuthFunc(
+                  loggedIn: appState.loggedIn,
+                  signOut: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  isTopographer: appState
+                      .isTopographer,
+                  isActive: appState.isActive,
+                ),
+              ),
+              const Divider(
+                height: 8,
+                thickness: 1,
+                indent: 8,
+                endIndent: 8,
+                color: Colors.grey,
+              ),
+              const Header("Calculo del area de un terreno"),
+            ],
           ),
-          const SizedBox(height: 8),
-          const IconAndDetail(Icons.location_city, 'Quito - Ecuador'),
-          Consumer<ApplicationState>(
-            builder: (context, appState, _) => AuthFunc(
-              loggedIn: appState.loggedIn,
-              signOut: () {
-                FirebaseAuth.instance.signOut();
-              },
-              isTopographer: appState.isTopographer, // Asegúrate de pasar el estado del rol del usuario
-            ),
-          ),
-          const Divider(
-            height: 8,
-            thickness: 1,
-            indent: 8,
-            endIndent: 8,
-            color: Colors.grey,
-          ),
-          const Header("Calculo del area de un terreno"),
-        ],
-      ),
-      )
-    );
+        ));
   }
 }

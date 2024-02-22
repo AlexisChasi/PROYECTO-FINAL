@@ -16,10 +16,12 @@ class AuthFunc extends StatelessWidget {
     required this.loggedIn,
     required this.signOut,
     required this.isTopographer,
+    required this.isActive,
   }) : super(key: key);
 
   final bool loggedIn;
   final bool isTopographer;
+  final bool isActive;
   final void Function() signOut;
 
   @override
@@ -28,65 +30,68 @@ class AuthFunc extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 24, bottom: 8),
-        child: StyledButton(
-          onPressed: () {
-            !loggedIn ? context.push('/sign-in') : signOut();
-          },
-          child: !loggedIn ? const Text('Iniciar Sesión') : const Text('Cerrar Sesión'),
-        ),
-      ),
-      Visibility(
-        visible: loggedIn,
-        child: Padding(
+        Padding(
           padding: const EdgeInsets.only(left: 24, bottom: 8),
           child: StyledButton(
             onPressed: () {
-              context.push('/profile');
+              !loggedIn ? context.push('/sign-in') : signOut();
             },
-            child: const Text('Perfil'),
+            child: !loggedIn
+                ? const Text('Iniciar Sesión')
+                : const Text('Cerrar Sesión'),
           ),
         ),
-      ),
-      Visibility(
-        visible: loggedIn,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24, bottom: 8),
-          child: StyledButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GoogleMapsScreen(
-                    key: UniqueKey(),
-                  ), // Asegúrate de pasar una Key
-                ),
-              );
-            },
-            child: const Text('Mapeo'),
+        Visibility(
+          visible: loggedIn && isActive,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: StyledButton(
+              onPressed: () {
+                context.push('/profile');
+              },
+              child: const Text('Perfil'),
+            ),
           ),
         ),
-      ),
-      Visibility(
-        visible: loggedIn,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24, bottom: 8),
-          child: StyledButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MeasurementsListScreen(), // Asegúrate de pasar una Key
-                ),
-              );
-            },
-            child: const Text('Tomas'),
+        Visibility(
+          visible: loggedIn && isActive,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: StyledButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GoogleMapsScreen(
+                      key: UniqueKey(),
+                    ), // Asegúrate de pasar una Key
+                  ),
+                );
+              },
+              child: const Text('Mapeo'),
+            ),
           ),
         ),
-      ),
-      Visibility(
-          visible: loggedIn && isTopographer == false,
+        Visibility(
+          visible: loggedIn && isActive,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: StyledButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        MeasurementsListScreen(), // Asegúrate de pasar una Key
+                  ),
+                );
+              },
+              child: const Text('Tomas'),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: loggedIn && !(isTopographer) && isActive,
           child: Padding(
             padding: const EdgeInsets.only(left: 24, bottom: 8),
             child: StyledButton(
@@ -99,6 +104,16 @@ class AuthFunc extends StatelessWidget {
                 );
               },
               child: const Text('Gestion Usuarios'),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: loggedIn && !(isActive),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: Text(
+              'Tu cuenta está desactivada',
+              style: TextStyle(fontSize: 18),
             ),
           ),
         ),

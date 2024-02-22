@@ -18,6 +18,9 @@ class ApplicationState extends ChangeNotifier {
   bool _isTopographer = false;
   bool get isTopographer => _isTopographer;
 
+  bool _isActive = false; // Variable para almacenar el estado de la cuenta
+  bool get isActive => _isActive;
+
   Future<void> init() async {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
@@ -30,10 +33,12 @@ class ApplicationState extends ChangeNotifier {
       if (user != null) {
         _loggedIn = true;
         _checkUserRole(user.uid);
+        _checkUserStatus(user.uid);
       } else {
         _loggedIn = false;
         _isTopographer =
             false; // Reiniciar el estado del rol cuando el usuario no esté autenticado
+        _isActive = false;
       }
       notifyListeners();
     });
@@ -61,6 +66,21 @@ class ApplicationState extends ChangeNotifier {
     if (userData != null) {
       // Verificar si el usuario tiene el rol de "topógrafo"
       _isTopographer = userData['role'] == 'Topografo';
+      notifyListeners();
+    }
+  }
+
+  Future<void> _checkUserStatus(String uid) async {
+    // Obtener el documento de usuario desde Firestore
+    Map<String, dynamic>? userData =
+        (await _getUserData(uid)) as Map<String, dynamic>?;
+    print(userData);
+
+    if (userData != null) {
+      _isActive = !(userData['estado'] == false);
+      notifyListeners();
+    } else {
+      _isActive = true;
       notifyListeners();
     }
   }
