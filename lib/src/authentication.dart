@@ -12,22 +12,22 @@ import 'widgets.dart';
 
 class AuthFunc extends StatelessWidget {
   const AuthFunc({
-    super.key,
+    Key? key,
     required this.loggedIn,
     required this.signOut,
-  });
+    required this.isTopographer,
+  }) : super(key: key);
 
   final bool loggedIn;
+  final bool isTopographer;
   final void Function() signOut;
 
   @override
-Widget build(BuildContext context) {
-  
-
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    children: [
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
       Padding(
         padding: const EdgeInsets.only(left: 24, bottom: 8),
         child: StyledButton(
@@ -86,23 +86,23 @@ Widget build(BuildContext context) {
         ),
       ),
       Visibility(
-        visible: loggedIn,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24, bottom: 8),
-          child: StyledButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AdminManageUsersScreen(), // Asegúrate de pasar una Key
-                ),
-              );
-            },
-            child: const Text('Gestion Usuarios'),
+          visible: loggedIn && isTopographer == false,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: StyledButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AdminManageUsersScreen(),
+                  ),
+                );
+              },
+              child: const Text('Gestion Usuarios'),
+            ),
           ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 }

@@ -8,17 +8,19 @@ import 'src/authentication.dart';
 import 'src/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mapeo de Terrenos'),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: <Widget>[
+    return ChangeNotifierProvider(
+      create: (context) => ApplicationState(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Mapeo de Terrenos'),
+          centerTitle: true,
+        ),
+        body: ListView(
+          children: <Widget>[
           // Ajuste de la imagen aquí
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -36,10 +38,12 @@ class HomePage extends StatelessWidget {
           const IconAndDetail(Icons.location_city, 'Quito - Ecuador'),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => AuthFunc(
-                loggedIn: appState.loggedIn,
-                signOut: () {
-                  FirebaseAuth.instance.signOut();
-                }),
+              loggedIn: appState.loggedIn,
+              signOut: () {
+                FirebaseAuth.instance.signOut();
+              },
+              isTopographer: appState.isTopographer, // Asegúrate de pasar el estado del rol del usuario
+            ),
           ),
           const Divider(
             height: 8,
@@ -51,6 +55,7 @@ class HomePage extends StatelessWidget {
           const Header("Calculo del area de un terreno"),
         ],
       ),
+      )
     );
   }
 }
