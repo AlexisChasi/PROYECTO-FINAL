@@ -29,3 +29,15 @@
 # Cálculo del área del polígono (terreno)
 
 ![WhatsApp Image 2024-02-28 at 7 44 49 PM (2)](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/a66f1030-1294-4c6a-a843-b1d5a20fa005)
+
+# Datos guardados en firebase
+
+![image](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/109c052b-cc0a-4b20-88b6-0a2af859244b)
+
+# Autenticacion de usuarios
+
+![image](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/07e95a0e-13a5-4252-bab6-80eea8b42c4d)
+
+# APK
+
+# VIDEO
