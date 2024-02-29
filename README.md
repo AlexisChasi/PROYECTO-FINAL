@@ -22,6 +22,10 @@
   
 ![WhatsApp Image 2024-02-28 at 7 44 48 PM](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/a4583349-c346-49b1-a767-0474ffac219e)
 
-- TIEMPO REAL DE TOPOGRAFO
+# TIEMPO REAL DE TOPOGRAFO
   
 ![WhatsApp Image 2024-02-28 at 7 44 48 PM (2)](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/786de8fb-0d71-4273-80dd-d85c812b4e36)
+
+# Cálculo del área del polígono (terreno)
+
+![WhatsApp Image 2024-02-28 at 7 44 49 PM (2)](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/a66f1030-1294-4c6a-a843-b1d5a20fa005)
