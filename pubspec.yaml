@@ -44,6 +44,7 @@ dependencies:
   provider: ^6.1.1
   firebase_ui_auth: ^1.13.0
   google_maps_flutter: ^2.2.1
+  url_launcher: ^6.0.9
  
 
 dev_dependencies:
