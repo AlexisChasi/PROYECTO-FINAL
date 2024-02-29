@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gtk_flutter/service/firebase_service.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AdminManageUsersScreen extends StatelessWidget {
@@ -58,24 +59,30 @@ class AdminManageUsersScreen extends StatelessWidget {
                     ),
                     IconButton(
                       icon: Icon(Icons.visibility),
-                      onPressed: () {
-                        // URL de Google Maps con la ubicación en tiempo real
-                        String googleMapsUrl =
-                            "https://www.google.com/maps/search/?api=1&query=Googleplex&query_place_id=ChIJVYBZvgoxj4ARkvPR3wQIlf0";
+                      onPressed: () async {
+                        // Obtener la posición actual
+                        try {
+                          Position position =
+                              await Geolocator.getCurrentPosition(
+                            desiredAccuracy: LocationAccuracy.high,
+                          );
 
-                        // Verifica si la URL se puede lanzar
-                        canLaunch(googleMapsUrl).then((bool canLaunch) {
-                          if (canLaunch) {
+                          // Construir la URL de Google Maps con la ubicación actual
+                          String googleMapsUrl =
+                              "https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}";
+
+                          // Verificar si la URL se puede lanzar
+                          if (await canLaunch(googleMapsUrl)) {
                             // Abre la URL
-                            launch(googleMapsUrl);
+                            await launch(googleMapsUrl);
                           } else {
                             // Si no se puede lanzar la URL, muestra un mensaje de error
                             print('No se pudo abrir la URL de Google Maps');
                           }
-                        }).catchError((err) {
-                          // Maneja el error si ocurre
-                          print('Error al lanzar la URL de Google Maps: $err');
-                        });
+                        } catch (e) {
+                          // Maneja cualquier error que pueda ocurrir al obtener la ubicación
+                          print('Error al obtener la ubicación: $e');
+                        }
                       },
                     ),
 
