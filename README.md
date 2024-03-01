@@ -4,6 +4,15 @@
 - Elvis Guanoluisa
 - Franklin Patiño
 - Robert Shiao
+
+# APK
+
+APK de la app: [APK](https://epnecuador-my.sharepoint.com/:u:/g/personal/franklin_patino_epn_edu_ec/EbVd7gdzKP1KkEmMtnOc_TABkc3WJlORae2ePdvYlbmt4g?e=Jh0dO4)
+
+# VIDEO
+
+https://www.youtube.com/watch?v=niHcuw_p42E
+
 # Login
 ![WhatsApp Image 2024-02-28 at 7 44 50 PM](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/283b4f7a-ccf9-489b-8693-c1054dd51222)
 # Sistema de administracion
@@ -37,7 +46,3 @@
 # Autenticacion de usuarios
 
 ![image](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/07e95a0e-13a5-4252-bab6-80eea8b42c4d)
-
-# APK
-
-# VIDEO
