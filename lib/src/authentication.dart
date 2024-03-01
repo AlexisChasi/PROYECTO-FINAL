@@ -54,7 +54,7 @@ class AuthFunc extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: loggedIn && isActive,
+          visible: loggedIn && isActive && isTopographer,
           child: Padding(
             padding: const EdgeInsets.only(left: 24, bottom: 8),
             child: StyledButton(
@@ -73,7 +73,7 @@ class AuthFunc extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: loggedIn && isActive,
+          visible: loggedIn && isActive && isTopographer,
           child: Padding(
             padding: const EdgeInsets.only(left: 24, bottom: 8),
             child: StyledButton(
