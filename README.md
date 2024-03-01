@@ -13,6 +13,10 @@ APK de la app: [APK](https://epnecuador-my.sharepoint.com/:u:/g/personal/frankli
 
 https://www.youtube.com/watch?v=niHcuw_p42E
 
+# Despliegue en uptodown
+
+![image](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/95731527/1e19b84f-211c-4e91-9a84-245274dbf235)
+
 # Login
 ![WhatsApp Image 2024-02-28 at 7 44 50 PM](https://github.com/AlexisChasi/PROYECTO-FINAL/assets/117754026/283b4f7a-ccf9-489b-8693-c1054dd51222)
 # Sistema de administracion
